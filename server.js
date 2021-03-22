@@ -13,8 +13,7 @@ const dashRouter = require('./routes/dashboard')
 const app = express();
 
 // Connect to DB
-require('./config/database');
-
+require('./config/database')
 
 // Configure the app with app.set()
 app.set('view engine', 'ejs');
