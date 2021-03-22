@@ -6,6 +6,7 @@ const userSchema = new Schema({
     password: String,
     firstName: String,
     lastName: String,
+    boards: [{type: Schema.Types.ObjectId, ref: "Board"}]
 },{
     timestamps: true
 })

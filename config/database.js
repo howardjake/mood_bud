@@ -17,6 +17,5 @@ mongoose.connect(`mongodb+srv://${USER}:${PASS}@cluster0.txpol.mongodb.net/mood_
 
 
 db.on('connected', function () {
-    console.log(process.env)
     console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
 });

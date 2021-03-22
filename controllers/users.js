@@ -9,7 +9,6 @@ function newUser(req, res) {
 function signup(req, res) {
     req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(SALT_ROUNDS));
     User.create(req.body, function(err, newUser) {
-        console.log(newUser);
         res.redirect('/');
     })
 }
@@ -28,7 +27,6 @@ function login(req, res) {
             const passwordMatch = bcrypt.compareSync(req.body.password, foundUser.password);
             if (passwordMatch) {
                 req.session.userId = foundUser._id;
-                console.log(req.session);
                 res.redirect('/dashboard');
             } else {
                 res.redirect('/signin');
@@ -41,7 +39,6 @@ function logout(req, res) {
     req.session.destroy();
     res.redirect('/')
 }
-
 
 module.exports = {
     new: newUser,

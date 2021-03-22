@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/css/style.css' />
+    <title>mood_bud</title>
+</head>
+
+<body>
+    <header>
+        <a href="dashboard/logout">logout</a>
+        <h1>mood_bud</h1>
+    </header>
+    <main>
+        <h3>New Board</h3>
+        <form action="/dashboard" method="post">
+            <label>
+                Name:
+                <input type="text" name="name">
+            </label>
+            <label for="">
+                Description:
+                <input type="type" name="description">
+            </label>
+            <button type="submit">Create</button>
+        </form>
+    </main>
+</body>
+
+</html>
