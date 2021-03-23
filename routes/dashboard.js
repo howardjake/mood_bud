@@ -8,4 +8,6 @@ router.get('/logout', dashCtrl.logout);
 router.get('/new', dashCtrl.new);
 router.post('/', dashCtrl.create)
 
+router.get('/:id', dashCtrl.show)
+
 module.exports = router;

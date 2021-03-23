@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<body>
+    <header>
+        <h1>mood_bud</h1>
+    </header>
+    <main>
+        <h3>New Pieces</h3>
+        <form action="/pieces/search" method="post" id="search">
+        <input type="text" name="pics">
+        <button type="submit">go!</button>
+        </form>
+        <ul>
+            <div class="container">
+                <div class="box">
+                  <img src="https://source.unsplash.com/1000x800">
+                  <span>CSS</span>
+                </div>
+                <div class="box">
+                  <img src="https://source.unsplash.com/1000x802">
+                  <span>Image</span>
+                </div>
+                <div class="box">
+                  <img src="https://source.unsplash.com/1000x804">
+                  <span>Hover</span>
+                </div>
+                <div class="box">
+                  <img src="https://source.unsplash.com/1000x806">
+                  <span>Effect</span>
+                </div>
+              </div>
+            <% let pics = photos.photos %>
+            <%    pics.forEach(function (pic) { %>
+                    <img src="<%= pic.src.medium %> " alt="">
+             <% }) %> 
+        </ul>
+    </main>
+</body>
+<%- include('../partials/footer') %>

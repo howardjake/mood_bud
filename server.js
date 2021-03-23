@@ -6,7 +6,8 @@ const port = 3000;
 const indexRouter = require('./routes/index');
 const homeRouter = require('./routes/home');
 const usersRouter = require('./routes/users');
-const dashRouter = require('./routes/dashboard')
+const dashRouter = require('./routes/dashboard');
+const piecesRouter = require('./routes/pieces')
 
 
 // Set up express app
@@ -33,7 +34,8 @@ app.use(session({
 app.use('/', indexRouter);
 app.use("/home", homeRouter);
 app.use('/users', usersRouter);
-app.use('/dashboard', dashRouter)
+app.use('/dashboard', dashRouter);
+app.use('/', piecesRouter)
 
 // Tell App to listen
 app.listen(port, function() {

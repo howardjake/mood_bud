@@ -17,8 +17,11 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "infinite-scroll": "^4.0.1",
     "mongoose": "^5.12.1",
     "morgan": "^1.10.0",
-    "pexels": "^1.0.1"
+    "onscreen": "^1.4.0",
+    "pexels": "^1.0.1",
+    "waypoints": "^4.0.1"
   }
 }

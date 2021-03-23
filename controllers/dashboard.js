@@ -45,9 +45,21 @@ function create(req, res) {
         })
 }
 
+
+function show(req, res) {
+    if(req.session.userId) {
+        Board.findById(req.params._id, function(err, board) {
+            res.render('dashboard/show', {title: ''})
+        })
+    } else {
+        res.redirect('/users/signin')
+    }
+}
+
 module.exports = {
     index,
     logout,
     new: newBoard,
-    create
+    create,
+    show
 }

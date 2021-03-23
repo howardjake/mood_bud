@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 
 function newUser(req, res) {
-    res.render('users/new_user');
+    res.render('users/new_user', {title: 'Signup'});
 }
 
 function signup(req, res) {
@@ -14,7 +14,7 @@ function signup(req, res) {
 }
 
 function signin(req, res) {
-    res.render('users/login');
+    res.render('users/login', {title: 'Login'});
 }
 
 function login(req, res) {
@@ -29,7 +29,7 @@ function login(req, res) {
                 req.session.userId = foundUser._id;
                 res.redirect('/dashboard');
             } else {
-                res.redirect('/signin');
+                res.redirect('/signin', {title: 'Login'});
             }
         }
     });

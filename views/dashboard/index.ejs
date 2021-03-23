@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='/css/style.css' />
-    <title>mood_bud</title>
-</head>
-
+<%- include('../partials/header') %>
 <body>
     <header>
         <a href="dashboard/logout">logout</a>
         <h1>mood_bud</h1>
     </header>
-    <% console.log(foundUser) %> 
-    <h3>Welcome <%= foundUser.firstName %></h3>
-
     <main>
+    <h3>Welcome <%= foundUser.firstName %></h3>
+    
         <h3>Your Boards</h3>
         <% foundUser.boards.forEach(function(board){ %>
             <ul>
                 <li>
-                    <a href=""><%= board.name%></a>
+                    
+                        <a href="/dashboard/<%= board._id %>">
+                        <%= board.name%></a>
                     <p> - <%= board.description%></p>
                 </li>
             </ul>
         <% }); %>
         <br>
         <a href="dashboard/new">+</a>
+        <%- include('../partials/footer') %>
     </main>
 </body>
-
-</html>

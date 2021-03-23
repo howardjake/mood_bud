@@ -1,28 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mood_bud</title>
-</head>
+<%- include('../partials/header') %>
 <body>
     <header>
         <a href="/users/new_user">signup</a>
         <h1>mood_bud</h1>
     </header>
-    <form action="/users/login" method="POST">
-        <h3>Login</h3>
-        <label>
-            username:
-            <input type="text" name="username">
-        </label>
-        <br>
-        <label>
-            password:
-            <input type="text" name="password">
-        </label>
-        <button type="submit">Login</button>
-    </form>
+    <main>
+        <form action="/users/login" method="POST">
+            <h3>Login</h3>
+            <label>
+                username:
+                <input type="text" name="username">
+            </label>
+            <br>
+            <label>
+                password:
+                <input type="text" name="password">
+            </label>
+            <button type="submit">Login</button>
+        </form>
+    </main>
 </body>
-</html>
+<%- include('../partials/footer') %>
