@@ -1,38 +1,54 @@
 <%- include('../partials/header') %>
 <body>
     <header>
-        <h1>mood_bud</h1>
+        <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
-        <h3>New Pieces</h3>
+        <h3>add photo</h3>
         <form action="/pieces/search" method="post" id="search">
-        <input type="text" name="pics">
-        <button type="submit">go!</button>
-        </form>
-        <ul>
-            <div class="container">
-                <div class="box">
-                  <img src="https://source.unsplash.com/1000x800">
-                  <span>CSS</span>
-                </div>
-                <div class="box">
-                  <img src="https://source.unsplash.com/1000x802">
-                  <span>Image</span>
-                </div>
-                <div class="box">
-                  <img src="https://source.unsplash.com/1000x804">
-                  <span>Hover</span>
-                </div>
-                <div class="box">
-                  <img src="https://source.unsplash.com/1000x806">
-                  <span>Effect</span>
-                </div>
+            <div class="input-group mb-3">
+                <input class="form-control"type="text" name="pics" value="<%= search.pics %>"><input type="hidden" name="page" value="1">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">search</button>
               </div>
-            <% let pics = photos.photos %>
-            <%    pics.forEach(function (pic) { %>
-                    <img src="<%= pic.src.medium %> " alt="">
-             <% }) %> 
-        </ul>
+        </form>
+        
+            <% let pics = every %>
+            
+            <div class="row">
+                <% if (pics.length > 0) { %>
+                    <div class="column">
+                        <% for (i = 0; i < pics.length; i+=4) { %>
+                            <a href="/pieces/<%= pics[i].id %> ">
+                                <img src="<%= pics[i].src.large %>" alt="<%= i + 1 %>">
+                             </a>
+                    <% } %>
+                    </div>
+                    <div class="column">
+                        <% for (i = 1; i < pics.length; i+=4) { %>
+                            <a href="/pieces/<%= pics[i].id %> ">
+                                <img src="<%= pics[i].src.large %>" alt="<%= i + 1 %>">
+                             </a>
+                   <% } %>
+                  </div>
+                    <div class="column">
+                        <% for (i = 2; i < pics.length; i += 4) { %>
+                            <a href="/pieces/<%= pics[i].id %> ">
+                                <img src="<%= pics[i].src.large %>" alt="<%= i + 1 %>">
+                             </a>
+                   <% } %>
+                  </div>
+                    <div class="column">
+                        <% for (i = 3; i < pics.length; i+=4) { %>
+                            <a href="/pieces/<%= pics[i].id %> ">
+                                <img src="<%= pics[i].src.large %>" alt="<%= i + 1 %>">
+                             </a>
+                   <% } %>
+                   
+                  </div>
+               <% } else { %>
+                    <h1>Sorry we couldn't find anything for "<%= search.pics %>"</h1>
+              <% } %>
     </main>
+
 </body>
 <%- include('../partials/footer') %>

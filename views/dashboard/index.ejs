@@ -2,7 +2,7 @@
 <body>
     <header>
         <a href="dashboard/logout">logout</a>
-        <h1>mood_bud</h1>
+        <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
     <h3>Welcome <%= foundUser.firstName %></h3>
@@ -10,16 +10,24 @@
         <h3>Your Boards</h3>
         <% foundUser.boards.forEach(function(board){ %>
             <ul>
-                <li>
-                    
-                        <a href="/dashboard/<%= board._id %>">
-                        <%= board.name%></a>
-                    <p> - <%= board.description%></p>
-                </li>
+                <div class="board-holder">
+                    <form action="/dashboard/<%= board._id %>?_method=DELETE" method="POST">
+                        <a href="#" class="delete" onclick="this.parentNode.submit()">X</a>
+                    </form>
+                    <form action="/dashboard/<%= board._id %>" method="get">
+                        <div class="board-card" onclick="this.parentNode.submit()">
+                                <h3 class="card-title">
+                                    <%= board.name %>
+                                </h3>
+                        </div>
+                    </form>
+                </div>
+                
             </ul>
+
         <% }); %>
         <br>
-        <a href="dashboard/new">+</a>
+        <a href="dashboard/new" id="add-one">+</a>
         <%- include('../partials/footer') %>
     </main>
 </body>

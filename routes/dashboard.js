@@ -6,8 +6,9 @@ router.get('/', dashCtrl.index);
 router.get('/logout', dashCtrl.logout);
 
 router.get('/new', dashCtrl.new);
-router.post('/', dashCtrl.create)
+router.post('/', dashCtrl.create);
 
-router.get('/:id', dashCtrl.show)
+router.get('/:id', dashCtrl.show);
+router.delete('/:id', dashCtrl.deleteOne);
 
 module.exports = router;

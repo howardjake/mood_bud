@@ -1,7 +1,9 @@
+const { default: axios } = require('axios');
 const { populate } = require('../models/board');
 const Board = require('../models/board');
 const user = require('../models/user');
 const User = require("../models/user");
+const BASE_URL = 'https://api.pexels.com/v1/' 
 
 function index(req, res) {
     console.log(req.session)
@@ -9,7 +11,6 @@ function index(req, res) {
         User.findById(req.session.userId).populate('boards').exec(function(err, foundUser){
             Board.find({_id: {$nin: user.boards}},
                 function(err, boards){
-                    console.log(boards)
                     res.render('dashboard/index', {title: "Dashboard", foundUser});
                 });
         });
@@ -48,12 +49,20 @@ function create(req, res) {
 
 function show(req, res) {
     if(req.session.userId) {
-        Board.findById(req.params._id, function(err, board) {
-            res.render('dashboard/show', {title: ''})
+        Board.findById(req.params.id, function(err, board) {
+                req.session.currentBoard = req.params.id
+                res.render('dashboard/show', {title: "", board})
         })
     } else {
         res.redirect('/users/signin')
     }
+}
+
+function deleteOne(req, res) {
+        console.log(req.params)
+        Board.findByIdAndDelete(req.params.id, function(err) {
+            res.redirect('/dashboard')
+        })
 }
 
 module.exports = {
@@ -61,5 +70,6 @@ module.exports = {
     logout,
     new: newBoard,
     create,
-    show
+    show,
+    deleteOne,
 }

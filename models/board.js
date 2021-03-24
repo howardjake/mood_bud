@@ -1,10 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const picSchema = new Schema({
+   id: String,
+   link: String,
+  }, {
+    timestamps: true,
+});
+
 const boardSchema = new Schema({
     name: String,
     description: String,
-    contents: [[{type: Schema.Types.ObjectId, ref: "Piece"}]]
+    contents: [picSchema],
 },{
     timestamps: true
 })

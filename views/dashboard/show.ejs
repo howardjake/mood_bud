@@ -2,21 +2,45 @@
 <body>
     <header>
         <a href="/dashboard/logout">logout</a>
-        <h1>mood_bud</h1>
+        <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
         <h3></h3>
-     <h1>AYY!</h1>
-     <form id="Search">
-        <input type="text" name="search">
-        <button type="submit">Search</button>
-        <a href="/pieces/new">+</a>
+     <h1><%= board.name %></h1>
+     <h3><%= board.description %></h3>
+        <form action="/pieces/new" method="get">
+            <input type="submit" value="Add Photo">
+            
         </form>
-        <ul>
-            <div id="pieces">
-
-            </div>
-        </ul>
+        <div class="row">
+            <% if (board.contents.length > 0) { %>
+                <div class="column">
+                    <% for (i = 0; i < board.contents.length; i+=4) { %>
+                 
+                            <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
+                       
+                <% } %>
+                </div>
+                <div class="column">
+                    <% for (i = 1; i < board.contents.length; i+=4) { %>
+              
+                            <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
+                      
+               <% } %>
+              </div>
+                <div class="column">
+                    <% for (i = 2; i < board.contents.length; i += 4) { %>
+                            <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
+                         
+               <% } %>
+              </div>
+                <div class="column">
+                    <% for (i = 3; i < board.contents.length; i+=4) { %>
+                            <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
+                         
+               <% } %>
+               <% } %>
     </main>
 </body>
 <%- include('../partials/footer') %>
+

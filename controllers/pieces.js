@@ -2,26 +2,28 @@ require('pexels');
 const axios = require('axios');
 const { query } = require('express');
 const Board = require("../models/board");
+const BASE_URL = 'https://api.pexels.com/v1/' 
 
 function newPiece(req, res) {
-    axios.get(BASE_URL + `curated?per_page=15`, {
-    headers: {
-      'Authorization': `5${process.env.PEXEL_AUTH}d`
-    }
-  })
-  .then(function(response){
-//   console.log(response);
-    res.render('pieces/new', { title: 'Add', photos: response.data });
-    });
+    console.log(req.body)
+    console.log(req.session)
+    axios.get(BASE_URL + `curated?per_page=20`, {
+        headers: {
+            'Authorization': `5${process.env.PEXEL_AUTH}d`
+          }
+        })
+        .then(function(response){
+        all = response.data.photos
+        res.render('pieces/new', { title: 'Express', photos: response.data, search: req.body, every: all});
+      });
 }
 
-const BASE_URL = 'https://api.pexels.com/v1/' 
 
 function create(req, res) {
   Board.findById(req.params.id, function (err, board) {
     board.contents.push(req.body);
     board.save(function (err) {
-      res.redirect(`/dashboard/${movie._id}`);
+      res.redirect(`/dashboard/`);
     });
   });
 }
@@ -38,7 +40,6 @@ function lookup(req, res, next) {
       })
       .then(function(response){
       all = response.data.photos
-      console.log(all)
       res.render('pieces/search', { title: 'Express', photos: response.data, search: req.body, every: all});
     });
 };
@@ -61,9 +62,34 @@ function more(req, res) {
     
 }
 
+function show(req, res) {
+    console.log(req.session)
+    axios.get(BASE_URL + "photos/" + req.params.id, {
+        headers: {
+            'Authorization': `5${process.env.PEXEL_AUTH}d`
+        }
+    })
+    .then(function(response) {
+        res.render('pieces/show', {title: req.params.id, photo: response, current: req.session.currentBoard})
+    })
+}
+
+function addPiece (req, res) {
+    console.log(req.session.currentBoard)
+    Board.findById(req.session.currentBoard, function(err, board) {
+        board.contents.push(req.body.photo)
+        board.save(function (err) {
+            res.redirect(`/dashboard/${req.session.currentBoard}`);
+        });
+        console.log(board)  
+    })
+}
+
 module.exports = {
   create,
   new: newPiece,
   lookup,
-  more
+  more,
+  show,
+  addPiece
 };
