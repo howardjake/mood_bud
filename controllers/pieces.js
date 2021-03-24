@@ -2,6 +2,7 @@ require('pexels');
 const axios = require('axios');
 const { query } = require('express');
 const Board = require("../models/board");
+const dashboard = require('./dashboard');
 const BASE_URL = 'https://api.pexels.com/v1/' 
 
 function newPiece(req, res) {
@@ -85,11 +86,22 @@ function addPiece (req, res) {
     })
 }
 
+function removeOne (req, res) {
+    console.log(req.body)
+    Board.findById(req.params.id, function(err, board) {
+        board.contents.splice(req.body.idx, 1);
+        board.save(function(err) {
+            res.redirect(`/dashboard/${req.params.id}`)
+        })
+    })
+}
+
 module.exports = {
   create,
   new: newPiece,
   lookup,
   more,
   show,
-  addPiece
+  addPiece,
+  removeOne
 };

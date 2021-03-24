@@ -16,26 +16,41 @@
             <% if (board.contents.length > 0) { %>
                 <div class="column">
                     <% for (i = 0; i < board.contents.length; i+=4) { %>
-                 
+                        <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
+                            <input type="hidden" name="idx" value="<%= i %> ">
+                            <a href="#" class="delete" onclick="this.parentNode.submit()">X</a>
+                        </form>
                             <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
                        
                 <% } %>
                 </div>
                 <div class="column">
                     <% for (i = 1; i < board.contents.length; i+=4) { %>
-              
+                            <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
+                                <input type="hidden" name="idx" value="<%= i %> ">
+                                <a href="#" class="delete" onclick="this.parentNode.submit()">X</a>
+                            </form>
                             <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
                       
                <% } %>
               </div>
                 <div class="column">
                     <% for (i = 2; i < board.contents.length; i += 4) { %>
+
+                            <form action="/dashboard/<%= board.id %>/pieces?_method=PUT" method="POST">
+                                <input type="hidden" name="idx" value="<%= i%> ">
+                                <a href="#" class="delete" onclick="this.parentNode.submit()">X</a>
+                            </form>
                             <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
                          
                <% } %>
               </div>
                 <div class="column">
                     <% for (i = 3; i < board.contents.length; i+=4) { %>
+                            <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
+                                <input type="hidden" name="idx" value="<%= i %> ">
+                                <a href="#" class="delete" onclick="this.parentNode.submit()">X</a>
+                            </form>
                             <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
                          
                <% } %>
