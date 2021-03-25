@@ -1,14 +1,18 @@
 <%- include('../partials/header') %>
 <body>
     <header>
+        <div>
+            <a href="/dashboard">home |</a>
+            <a href="/dashboard/logout">logout |</a>
+        </div>
         <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
-        <h3>New Pieces</h3>
+        <h3>add photo</h3>
         <form action="/pieces/search" method="post" id="search">
             <div class="input-group mb-3">
                 <input class="form-control"type="text" name="pics" value="<%= search.pics %>"><input type="hidden" name="page" value="1">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">search</button>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">search</button>
               </div>
         </form>
         
@@ -45,97 +49,99 @@
                    <% } %>
                    
                   </div>
-        
-                  <nav>
-                      <h4>Page: <%= search.page %> </h4>
-                    <ul class="pagination">
-                        <% if (search.page > 1) { %>
-                            <li class="page-item">
+                  <% if (pics.length > 19) { %>
+                    <nav>
+                        <h4>Page: <%= search.page %> </h4>
+                      <ul class="pagination">
+                          <% if (search.page > 1) { %>
+                              <li class="page-item">
+                                  <form action="/pieces/search" method="POST">
+                                      <a class="page-link" href="#" onclick="this.parentNode.submit()">Previous
+                                          <input type="hidden" name="pics" value="<%= search.pics %>">
+                                          <input type="hidden" name="page" value="<%=search.page = parseInt(search.page) - 1%>">
+                                          </a>
+                                      </form>
+                              </li>
+                         <% } %>  
+  
+                          <% if (photos.page < 3) { %>
+                            <li class="page-item 
+                            <% if (photos.page === 1){ %>
+                                active disabled
+                              <% } %> ">
                                 <form action="/pieces/search" method="POST">
-                                    <a class="page-link" href="#" onclick="this.parentNode.submit()">Previous
+                                  <a class="page-link" href="#" onclick="this.parentNode.submit()">1
+                                      <input type="hidden" name="pics" value="<%= search.pics %>">
+                                      <input type="hidden" name="page" value="1">
+                                      </a>
+                                  </form>
+                              </li>
+                              <li class="page-item 
+                              <% if (photos.page === 2){ %>
+                                  active disabled
+                                <% } %> ">
+                                  <form action="/pieces/search" method="POST">
+                                    <a class="page-link" href="#" onclick="this.parentNode.submit()">2
                                         <input type="hidden" name="pics" value="<%= search.pics %>">
-                                        <input type="hidden" name="page" value="<%=search.page = parseInt(search.page) - 1%>">
+                                        <input type="hidden" name="page" value="2">
                                         </a>
                                     </form>
-                            </li>
-                       <% } %>  
+                                </li>
+                              <li class="page-item 
+                              <% if (photos.page === 3){ %>
+                                  active disabled
+                                <% } %> ">
+                                  <form action="/pieces/search" method="POST">
+                                    <a class="page-link" href="#" onclick="this.parentNode.submit()">3
+                                        <input type="hidden" name="pics" value="<%= search.pics %>">
+                                        <input type="hidden" name="page" value="3">
+                                        </a>
+                                    </form>
+                                </li>
+                          <% } else { %>
+                              <li class="page-item">
+                                <form action="/pieces/search" method="POST">
+                                  <a class="page-link" href="#" onclick="this.parentNode.submit()"><%= String(photos.page - 1)%>
+                                      <input type="hidden" name="pics" value="<%= search.pics %>">
+                                      <input type="hidden" name="page" value="<%= String(photos.page - 1)%>">
+                                      </a>
+                                  </form>
+                              </li>
+                              <li class="page-item active disabled">
+                                  <form action="/pieces/search" method="POST">
+                                    <a class="page-link" href="#" onclick="this.parentNode.submit()"><%= String(photos.page) %>
+                                        <input type="hidden" name="pics" value="<%= search.pics %>">
+                                        <input type="hidden" name="page" value="<%= String(photos.page)%>">
+                                        </a>
+                                    </form>
+                                </li>
+                              <li class="page-item ">
+                                  <form action="/pieces/search" method="POST">
+                                    <a class="page-link" href="#" onclick="this.parentNode.submit()"><%= String(photos.page + 1)%>
+                                        <input type="hidden" name="pics" value="<%= search.pics %>">
+                                        <input type="hidden" name="page" value="<%= String(photos.page + 1)%>">
+                                        </a>
+                                    </form>
+                                </li>
+                         <% } %>
+                            <% if ((photos.page * photos.per_page) < photos.total_results) { %>
+                              <li class="page-item">
+                                  <form action="/pieces/search" method="POST">
+                                      <a class="page-link" href="#" onclick="this.parentNode.submit()">Next
+                                          <input type="hidden" name="pics" value="<%= search.pics %>">
+                                          <input type="hidden" name="page" value="<%= photos.page + 1 %>">
+                                          </a>
+                                      </form>
+                              </li>
+                         <% } %> 
+                      </ul>
+                    </nav>
 
-                        <% if (photos.page < 3) { %>
-                          <li class="page-item 
-                          <% if (photos.page === 1){ %>
-                              active disabled
-                            <% } %> ">
-                              <form action="/pieces/search" method="POST">
-                                <a class="page-link" href="#" onclick="this.parentNode.submit()">1
-                                    <input type="hidden" name="pics" value="<%= search.pics %>">
-                                    <input type="hidden" name="page" value="1">
-                                    </a>
-                                </form>
-                            </li>
-                            <li class="page-item 
-                            <% if (photos.page === 2){ %>
-                                active disabled
-                              <% } %> ">
-                                <form action="/pieces/search" method="POST">
-                                  <a class="page-link" href="#" onclick="this.parentNode.submit()">2
-                                      <input type="hidden" name="pics" value="<%= search.pics %>">
-                                      <input type="hidden" name="page" value="2">
-                                      </a>
-                                  </form>
-                              </li>
-                            <li class="page-item 
-                            <% if (photos.page === 3){ %>
-                                active disabled
-                              <% } %> ">
-                                <form action="/pieces/search" method="POST">
-                                  <a class="page-link" href="#" onclick="this.parentNode.submit()">3
-                                      <input type="hidden" name="pics" value="<%= search.pics %>">
-                                      <input type="hidden" name="page" value="3">
-                                      </a>
-                                  </form>
-                              </li>
-                        <% } else { %>
-                            <li class="page-item">
-                              <form action="/pieces/search" method="POST">
-                                <a class="page-link" href="#" onclick="this.parentNode.submit()"><%= String(photos.page - 1)%>
-                                    <input type="hidden" name="pics" value="<%= search.pics %>">
-                                    <input type="hidden" name="page" value="<%= String(photos.page - 1)%>">
-                                    </a>
-                                </form>
-                            </li>
-                            <li class="page-item active disabled">
-                                <form action="/pieces/search" method="POST">
-                                  <a class="page-link" href="#" onclick="this.parentNode.submit()"><%= String(photos.page) %>
-                                      <input type="hidden" name="pics" value="<%= search.pics %>">
-                                      <input type="hidden" name="page" value="<%= String(photos.page)%>">
-                                      </a>
-                                  </form>
-                              </li>
-                            <li class="page-item ">
-                                <form action="/pieces/search" method="POST">
-                                  <a class="page-link" href="#" onclick="this.parentNode.submit()"><%= String(photos.page + 1)%>
-                                      <input type="hidden" name="pics" value="<%= search.pics %>">
-                                      <input type="hidden" name="page" value="<%= String(photos.page + 1)%>">
-                                      </a>
-                                  </form>
-                              </li>
-                       <% } %>
-                          <% if ((photos.page * photos.per_page) < photos.total_results) { %>
-                            <li class="page-item">
-                                <form action="/pieces/search" method="POST">
-                                    <a class="page-link" href="#" onclick="this.parentNode.submit()">Next
-                                        <input type="hidden" name="pics" value="<%= search.pics %>">
-                                        <input type="hidden" name="page" value="<%= photos.page + 1 %>">
-                                        </a>
-                                    </form>
-                            </li>
-                       <% } %> 
-                    </ul>
-                  </nav>
+                  <% } %>
+                  
                <% } else { %>
                     <h1>Sorry we couldn't find anything for "<%= search.pics %>"</h1>
               <% } %>
     </main>
-    <script type="text/javascript" src="https://unpkg.com/onscreen/dist/on-screen.umd.min.js"></script>
 </body>
 <%- include('../partials/footer') %>

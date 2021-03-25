@@ -59,10 +59,11 @@ function show(req, res) {
 }
 
 function deleteOne(req, res) {
-        console.log(req.params)
+    
         Board.findByIdAndDelete(req.params.id, function(err) {
-            res.redirect('/dashboard')
-        })
+                res.redirect('/dashboard')
+            })
+        
 }
 
 module.exports = {

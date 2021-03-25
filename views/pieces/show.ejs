@@ -1,22 +1,27 @@
 <%- include('../partials/header') %>
 <body>
     <header>
-        <a href="/dashboard/logout">logout</a>
+        <div>
+            <a href="/dashboard">home |</a>
+            <a href="/dashboard/logout">logout |</a>
+        </div>
         <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
-    <main>
-        <h3></h3>
-     <img src="<%= photo.data.src.large %>" alt="">
-
-     <h3><u>Photographer</u></h3>
-     <h3><%= photo.data.photographer %></h3>
-     <h3><u>Source</u></h3>
-     <h3><a href="<%= photo.data.url %>"> <%= photo.data.url %></a></h3>
-     <form action="/dashboard/<%= current %>/pieces" method="post">
-        <input type="submit" value="Add to Board">
-        <input type="hidden" name="id" value="<%= photo.data.id %>">
-        <input type="hidden" name="link" value="<%= photo.data.src.large %>">
-    </form>
+    <main id="show-page-pieces">
+        <div >
+            <img id="single-img" src="<%= photo.data.src.large %>" alt="">
+            <form action="/dashboard/<%= current %>/pieces" method="post">
+                <button class="btn btn-outline-secondary" type="submit">Add to Board</button>
+                <input type="hidden" name="id" value="<%= photo.data.id %>">
+                <input type="hidden" name="link" value="<%= photo.data.src.large %>">
+            </form>
+        </div>
+        <div id="img-info">
+        <h3><u>Photographer</u></h3>
+        <h3><%= photo.data.photographer %></h3>
+        <h3><u>Source</u></h3>
+        <h3><a href="<%= photo.data.url %>"> <%= photo.data.url %></a></h3>
+    </div>
     </main>
 </body>
 <%- include('../partials/footer') %>

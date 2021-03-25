@@ -1,7 +1,10 @@
 <%- include('../partials/header') %>
 <body>
     <header>
-        <a href="/dashboard/logout">logout</a>
+        <div>
+            <a href="/dashboard">home |</a>
+            <a href="/dashboard/logout">logout |</a>
+        </div>
         <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
@@ -9,11 +12,11 @@
         <form action="/dashboard" method="post">
             <div class="input-group mb-3">
                     <input class="form-control" type="text" name="name" placeholder="Name">
+                </div>
+                <div class="mb-3">
+                    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+                </div>
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2" onclick="this.parentNode.submit()">Create</button>
-            </div>
-            <div class="mb-3">
-                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
-              </div>
         </form>
     </main>
 </body>

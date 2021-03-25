@@ -1,5 +1,14 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 20px;
+}
+
 a {
     color: inherit;
+}
+
+img {
+    box-shadow: 7px 9px 27px 7px rgba(0,0,0,0.3);
 }
 
 a:hover {
@@ -8,10 +17,20 @@ a:hover {
 }
 
 header {
+    font-family: 'Raleway', sans-serif;
     display:flex;
     flex-direction: column;
     align-items: flex-end;
     margin: 3vw 10vw 0;
+}
+
+#logo {
+    background-color: indigo;
+    color: ivory;
+    padding: 1vw 1vw 0.3vw 18vw;
+    font-size: 40px;
+    margin: 1vw 0 4vh;
+    box-shadow: 7px 9px 27px 7px rgba(0,0,0,0.3);
 }
 
 h3 {
@@ -25,24 +44,29 @@ h3 {
 }
 
 .board-card {
-    width: 10vw;
+    width: auto;
     height: auto;
     border: rgb(0, 0, 0) solid 2px;
     display: flex;
     flex-direction: column;
     align-items: left;
     border-radius: 5px;
-    box-shadow: ;
+    box-shadow: 7px 9px 27px 7px rgba(0,0,0,0.1);
+    font-size: 3vw;
+    padding: 0.3vw;
+}
+
+.delete {
+    display: flex;
+    text-align: right;
 }
 
 #add-one {
     font-size: 5vw;
 }
 
-
 .board-card:hover {
     background-color: rgb(145, 145, 145);
-    width: 10vw;
     height: auto;
     border: rgb(0, 0, 0) solid 2px;
     display: flex;
@@ -62,13 +86,26 @@ h3 {
 }
 
 main {
-    margin: 0 12vw;
+    margin: 0 12vw 2vw;
 }
 
 nav {
     display: inline;
     text-align: center;
     margin: auto;
+}
+
+#show-page-pieces {
+    display: flex;
+}
+
+#single-img {
+    display: flex;
+    margin: 0 2vw 2vw 0;
+}
+
+#img-info {
+    margin: 20px 0 0 0;
 }
 
 .row {
@@ -87,12 +124,35 @@ nav {
     vertical-align: middle;
     width: 100%;
   }
+
+  .column img:hover {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    padding: 2px;
+    background-color: gray;
+  }
   
   /* Responsive layout - makes a two column-layout instead of four columns */
+  @media screen and (max-width: 1200px) {
+ 
+    #show-page-pieces {
+        display: block;
+    }
+    #single-img {
+       width: 60vw;
+       margin: 0 auto 3vh 0;
+       justify-content: center;
+    }
+  }
+
   @media screen and (max-width: 800px) {
     .column {
       flex: 50%;
       max-width: 50%;
+    }
+    #show-page-pieces {
+        display: block;
     }
   }
   

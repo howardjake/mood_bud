@@ -1,7 +1,10 @@
 <%- include('../partials/header') %>
 <body>
     <header>
-        <a href="/dashboard/logout">logout</a>
+        <div>
+            <a href="/dashboard">home |</a>
+            <a href="/dashboard/logout">logout |</a>
+        </div>
         <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
@@ -9,7 +12,7 @@
      <h1><%= board.name %></h1>
      <h3><%= board.description %></h3>
         <form action="/pieces/new" method="get">
-            <input type="submit" value="Add Photo">
+            <button class="btn btn-outline-secondary"type="submit">Add Picture</button>
             
         </form>
         <div class="row">

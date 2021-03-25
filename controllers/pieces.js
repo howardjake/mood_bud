@@ -32,7 +32,6 @@ function create(req, res) {
 let all = []
 
 function lookup(req, res, next) {
-    console.log(req.body)
     let page = req.body.page 
     axios.get(BASE_URL + `search?query=${req.body.pics}&per_page=20&page=${page}`, {
         headers: {
@@ -40,6 +39,7 @@ function lookup(req, res, next) {
         }
       })
       .then(function(response){
+          console.log(response)
       all = response.data.photos
       res.render('pieces/search', { title: 'Express', photos: response.data, search: req.body, every: all});
     });
