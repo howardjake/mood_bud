@@ -5,19 +5,26 @@
         <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
-        <form action="/users/login" method="POST">
-            <h3>Login</h3>
-            <label>
-                username:
-                <input type="text" name="username">
-            </label>
-            <br>
-            <label>
-                password:
-                <input type="password" name="password">
-            </label>
-            <button type="submit">Login</button>
-        </form>
+        <video autoplay muted loop id="myVideo">
+            <source src="/img/pexels-artem-podrez-7234792.mp4" type="video/mp4">
+          </video>
+        <div id="login-card">
+            <form action="/users/login" method="POST">
+                <label>
+                    username:
+                    <br>
+                    <input type="text" name="username">
+                </label>
+                <br>
+                <label>
+                    password:
+                    <br>
+                    <input type="password" name="password">
+                </label>
+                <br>
+                <button class="btn btn-light" type="submit">Login</button>
+            </form>
+        </div>
     </main>
 </body>
 <%- include('../partials/footer') %>

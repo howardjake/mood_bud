@@ -3,6 +3,15 @@ body {
     margin: 20px;
 }
 
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -2;
+  }
+
 a {
     color: inherit;
 }
@@ -12,12 +21,12 @@ img {
 }
 
 a:hover {
-    color: grey;
+    color: rgb(97, 97, 97);
     text-decoration: none;
 }
 
 header {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Arvo', serif;
     display:flex;
     flex-direction: column;
     align-items: flex-end;
@@ -25,16 +34,35 @@ header {
 }
 
 #logo {
-    background-color: indigo;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.0) 0%, rgba(163, 162, 162, 0.678) 100%);
     color: ivory;
     padding: 1vw 1vw 0.3vw 18vw;
     font-size: 40px;
     margin: 1vw 0 4vh;
-    box-shadow: 7px 9px 27px 7px rgba(0,0,0,0.3);
+    border-radius: 10px;
 }
 
 h3 {
     display: flex;
+}
+
+#dash-back {
+    background: whitesmoke;
+    padding: 1vw 0;
+    margin: 0 10vw;
+    box-shadow: 7px 9px 27px 7px rgba(0,0,0,0.3);
+}
+
+#login-card {
+    background: rgba(255, 255, 255, 0.555);
+    padding: 20px;
+    color: rgb(0, 0, 0);
+    width: fit-content;
+    box-shadow: 7px 9px 27px 7px rgba(0,0,0,0.3);
+    display: flex;
+    text-align: right;
+    justify-items: right;
+    margin: auto 0 0 auto;
 }
 
 #search {
@@ -52,14 +80,16 @@ h3 {
     align-items: left;
     border-radius: 5px;
     box-shadow: 7px 9px 27px 7px rgba(0,0,0,0.1);
-    font-size: 33px;
-    padding: 0.3vw;
+    font-size: 23px;
+    padding: 0.3vw 1vw;
 }
 
+
 .delete {
-    display: flex;
-    text-align: right;
+    text-align: center;
+    margin: 0 auto; 
 }
+
 
 #add-one {
     font-size: 5vw;
@@ -106,60 +136,67 @@ nav {
 
 #img-info {
     margin: 20px 0 0 0;
+    font-size: 15px;
 }
 
 .row {
     display: flex;
     flex-wrap: wrap;
     padding: 0 4px;
-  }
-  .column {
+}
+.column {
     flex: 25%;
     max-width: 25%;
     padding: 0 4px;
-  }
-  
-  .column img {
+}
+
+.column img {
     margin-top: 8px;
     vertical-align: middle;
     width: 100%;
-  }
+}
 
-  .column img:hover {
+.column img:hover {
     margin-top: 8px;
     vertical-align: middle;
     width: 100%;
     padding: 2px;
     background-color: gray;
-  }
-  
-  /* Responsive layout - makes a two column-layout instead of four columns */
-  @media screen and (max-width: 1200px) {
- 
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 1200px) {
+    
     #show-page-pieces {
         display: block;
     }
     #single-img {
-       width: 60vw;
-       margin: 0 auto 3vh 0;
-       justify-content: center;
+        width: 60vw;
+        margin: 0 auto 3vh 0;
+        justify-content: center;
     }
-  }
+}
 
-  @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .column {
-      flex: 50%;
-      max-width: 50%;
+        flex: 50%;
+        max-width: 50%;
     }
     #show-page-pieces {
         display: block;
     }
-  }
-  
-  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
     .column {
-      flex: 100%;
-      max-width: 100%;
+        flex: 100%;
+        max-width: 100%;
     }
-  }
+}
+
+.x-out {
+    display: inline;
+    text-align: end;
+    right: 100px;
+}

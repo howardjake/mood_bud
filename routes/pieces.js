@@ -7,7 +7,7 @@ router.get("/pieces/new", piecesCtrl.new);
 router.post("/pieces/search", piecesCtrl.lookup);
 router.post("/pieces/more", piecesCtrl.more);
 router.get('/pieces/:id', piecesCtrl.show);
-router.post('/dashboard/:id/pieces', piecesCtrl.addPiece);
-router.put('/dashboard/:id/pieces', piecesCtrl.removeOne)
+// router.post('/dashboard/:id/pieces', piecesCtrl.addPiece);
+// router.put('/dashboard/:id/pieces', piecesCtrl.removeOne);
 
 module.exports = router;

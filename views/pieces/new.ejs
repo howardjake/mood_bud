@@ -8,7 +8,14 @@
         <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
-        <h3>add photo</h3>
+        <h3>add via link</h3>
+        <form action="/dashboard/<%= current %>/pieces" method="post">
+            <div class="input-group mb-3">
+                <input class="form-control"type="text" name="link" id="new-link">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2" id="add-link">add</button>
+              </div>
+        </form>
+        <h3>...or search</h3>
         <form action="/pieces/search" method="post" id="search">
             <div class="input-group mb-3">
                 <input class="form-control"type="text" name="pics" value="<%= search.pics %>"><input type="hidden" name="page" value="1">

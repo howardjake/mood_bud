@@ -1,30 +1,35 @@
 <%- include('../partials/header') %>
 <body>
+    <div id="dash-back">
     <header>
         <div>
-        <a href="/dashboard">home |</a>
-        <a href="/dashboard/logout">logout |</a>
-    </div>
-    <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
+            <a href="/dashboard">home |</a>
+            <a href="/dashboard/logout">logout |</a>
+        </div>
+        <h1 id="logo"><a href="/dashboard">mood_bud</a></h1>
     </header>
     <main>
-    <h3>Welcome <%= foundUser.firstName %></h3>
-    
-        <h3>Your Boards</h3>
-        <% foundUser.boards.forEach(function(board){ %>
-                    <form action="/dashboard/<%= board._id %>?_method=DELETE" method="POST">
-                        <a href="#" id="delete" class="delete">X</a>
-                    </form>
-                    <form action="/dashboard/<%= board._id %>" method="get">
-                        <div class="board-card" onclick="this.parentNode.submit()">
-                            
-                                    <%= board.name %>
-                                
-                            </div>
-                    </form>
-        <% }); %>
-        <br>
-        <a href="dashboard/new" id="add-one">+</a>
-        <%- include('../partials/footer') %>
+        <video autoplay muted loop id="myVideo">
+            <source src="/img/video (2).mp4" type="video/mp4">
+          </video>
+
+
+              <h3>Welcome <%= foundUser.firstName %></h3>
+              
+                  <h3>Your Boards</h3>
+                  <% foundUser.boards.forEach(function(board){ %>
+                      <form class="" action="/dashboard/<%= board._id %>" method="get">
+                          <div class="board-card" onclick="this.parentNode.submit()">
+                              
+                              <%= board.name %>
+                              
+                          </div>
+          
+                              </form>
+                  <% }); %>
+                  <br>
+                  <a href="dashboard/new" id="add-one">+</a>
+                  <%- include('../partials/footer') %>
+          </div>
     </main>
 </body>

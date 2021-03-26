@@ -3,7 +3,8 @@ const axios = require('axios');
 const { query } = require('express');
 const Board = require("../models/board");
 const dashboard = require('./dashboard');
-const BASE_URL = 'https://api.pexels.com/v1/' 
+const BASE_URL = 'https://api.pexels.com/v1/';
+const isImageUrl = require('is-image-url');
 
 function newPiece(req, res) {
     console.log(req.body)
@@ -15,7 +16,7 @@ function newPiece(req, res) {
         })
         .then(function(response){
         all = response.data.photos
-        res.render('pieces/new', { title: 'Express', photos: response.data, search: req.body, every: all});
+        res.render('pieces/new', { title: 'Express', photos: response.data, search: req.body, every: all, current: req.session.currentBoard});
       });
 }
 
@@ -76,15 +77,20 @@ function show(req, res) {
 }
 
 function addPiece (req, res) {
-    console.log(req.session.currentBoard)
-    Board.findById(req.session.currentBoard, function(err, board) {
-        board.contents.push(req.body.photo)
-        board.save(function (err) {
-            res.redirect(`/dashboard/${req.session.currentBoard}`);
-        });
-        console.log(board)  
-    })
+    let isIt = isImageUrl(req.body.link)
+    console.log(isIt)
+    if (!currentBoard) {
+        Board.findById(req.session.currentBoard, function(err, board) {
+            board.contents.push(req.body.photo)
+            board.save(function (err) {
+                res.redirect(`/dashboard/${req.session.currentBoard}/`);
+            });
+            console.log(board)  
+        })
+        } else {
+   res.redirect('/dashboard')
 }
+} 
 
 function removeOne (req, res) {
     console.log(req.body)
