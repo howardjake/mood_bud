@@ -25,7 +25,7 @@ function create(req, res) {
   Board.findById(req.params.id, function (err, board) {
     board.contents.push(req.body);
     board.save(function (err) {
-      res.redirect(`/dashboard/`);
+      res.redirect(`/dashboard/${req.session.currentBoard}`);
     });
   });
 }
@@ -79,6 +79,8 @@ function show(req, res) {
 function addPiece (req, res) {
     let isIt = isImageUrl(req.body.link)
     console.log(isIt)
+    let boardPage = req.session.currentBoard;
+    console.log(boardPage);
     if (!currentBoard) {
         Board.findById(req.session.currentBoard, function(err, board) {
             board.contents.push(req.body.photo)
