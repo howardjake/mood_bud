@@ -34,6 +34,6 @@
 - More responsive mobile migration
 
 # Getting Started
-- Go [Here]((https://mood-bud-app.herokuapp.com/))
+- Go [Here]((https://mood-bud-app.herokuapp.com/)
 - Create an account 
 - Start boarding!
