@@ -14,6 +14,9 @@
                 <input class="form-control"type="text" name="link" id="new-link">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2" id="add-link">add</button>
               </div>
+              <% if (url === false) { %> 
+                  <h6 id="url-warning"> Sorry, this is not compatible image URL. Try again.</h6>
+              <% } %> 
         </form>
         <h3>...or search</h3>
         <form action="/pieces/search" method="post" id="search">

@@ -9,19 +9,18 @@
     </header>
     <main>
         <h3></h3>
-        
-        
+        <form action="/dashboard/<%= board._id%>?_method=PUT" method="POST">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="<%= board.name %>" name="name">
+            <br>
+            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"><%= board.description %></textarea>
+            <br>
         <div class="board-controls">
-            <h1><%= board.name %></h1> 
-        
-            <form action="/dashboard/<%= board._id%>/edit" method="GET">
-                <button class="btn btn-outline-secondary"type="submit">Edit</button>
+                <button class="btn btn-outline-secondary"type="submit">Done</button>
             </form>
-            <!-- <form action="/pieces/new" method="get">
+            <form action="/pieces/new" method="get">
                 <button class="btn btn-outline-secondary"type="submit">Add Picture</button>
-            </form> -->
+            </form>
         </div>
-        <h3><%= board.description %></h3>
         <hr>
 
         <div class="row">
@@ -29,22 +28,22 @@
                 <div class="column">
                     <% for (i = 0; i < board.contents.length; i+=4) { %>
                             <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
-                        <!-- <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
+                        <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
                             <input type="hidden" name="idx" value="<%= i %> ">
                             
-                            <a href="#" class="delete">X</a>
-                        </form> -->
+                            <a href="#" class="delete">x</a>
+                        </form>
                        
                 <% } %>
                 </div>
                 <div class="column">
                     <% for (i = 1; i < board.contents.length; i+=4) { %>
                         <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
-                        <!-- <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
+                        <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
                             <input type="hidden" name="idx" value="<%= i %> ">
                             
-                            <a href="#" class="delete">...</a>
-                        </form> -->
+                            <a href="#" class="delete">x</a>
+                        </form>
                       
                <% } %>
               </div>
@@ -52,33 +51,33 @@
                     <% for (i = 2; i < board.contents.length; i += 4) { %>
 
                         <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
-                        <!-- <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
+                        <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
                             <input type="hidden" name="idx" value="<%= i %> ">
                             
-                            <a href="#" class="delete">...</a>
-                        </form> -->
+                            <a href="#" class="delete">x</a>
+                        </form>
                          
                <% } %>
               </div>
                 <div class="column">
                     <% for (i = 3; i < board.contents.length; i+=4) { %>
                         <img src="<%= board.contents[i].link %>" alt="<%= i + 1 %>">
-                        <!-- <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
+                        <form action="/dashboard/<%= board._id %>/pieces?_method=PUT" method="POST">
                             <input type="hidden" name="idx" value="<%= i %> ">
                             
-                            <a href="#" class="delete">...</a>
-                        </form> -->
+                            <a href="#" class="delete">x</a>
+                        </form>
                          
                <% } %>
                <% } %>
             
         </main>
  
-            <!-- <div class="delete-box">
+            <div class="delete-box">
                 <form action="/dashboard/<%= board._id %>?_method=DELETE" method="POST">
                  <button class="btn btn-outline-danger delete" type="button">Delete this Board</button>
                  </form>
-            </div> -->
+            </div>
 </body>
 <%- include('../partials/footer') %>
 

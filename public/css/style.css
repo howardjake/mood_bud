@@ -84,6 +84,15 @@ h3 {
     padding: 0.3vw 1vw;
 }
 
+#url-warning {
+    color: red;
+}
+
+.board-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .delete-box {
     text-align: center;

@@ -11,4 +11,7 @@ router.post('/', dashCtrl.create);
 router.get('/:id', dashCtrl.show);
 router.delete('/:id', dashCtrl.deleteOne);
 
+router.get('/:id/edit', dashCtrl.edit);
+router.put('/:id', dashCtrl.update);
+
 module.exports = router;

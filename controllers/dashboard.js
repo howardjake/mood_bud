@@ -1,5 +1,6 @@
 const { default: axios } = require('axios');
 const { populate } = require('../models/board');
+const board = require('../models/board');
 const Board = require('../models/board');
 const user = require('../models/user');
 const User = require("../models/user");
@@ -59,11 +60,35 @@ function show(req, res) {
 }
 
 function deleteOne(req, res) {
-    
         Board.findByIdAndDelete(req.params.id, function(err) {
                 res.redirect('/dashboard')
             })
         
+}
+
+function edit(req, res) {
+    if(req.session.userId) {
+        Board.findById(req.params.id, function(err, board) {
+                req.session.currentBoard = req.params.id
+                res.render('dashboard/edit', {title: "", board})
+        })
+    } else {
+        res.redirect('/users/signin')
+    }
+}
+
+function update(req, res) {
+    if(req.session.userId) {
+        Board.findById(req.params.id, function(err, board) {
+            board.name = req.body.name;
+            board.description = req.body.description
+            board.save(function(err){
+                res.redirect(`/dashboard/${ req.session.currentBoard }`)
+            })
+        });
+    } else {
+        res.redirect('/users/signin')
+    }
 }
 
 module.exports = {
@@ -73,4 +98,6 @@ module.exports = {
     create,
     show,
     deleteOne,
+    edit,
+    update
 }

@@ -6,6 +6,8 @@ const dashboard = require('./dashboard');
 const BASE_URL = 'https://api.pexels.com/v1/';
 const isImageUrl = require('is-image-url');
 
+let url = true
+
 function newPiece(req, res) {
     console.log(req.body)
     console.log(req.session)
@@ -15,35 +17,48 @@ function newPiece(req, res) {
           }
         })
         .then(function(response){
+        console.log(url)
         all = response.data.photos
-        res.render('pieces/new', { title: 'Express', photos: response.data, search: req.body, every: all, current: req.session.currentBoard});
+        res.render('pieces/new', { title: 'Express', photos: response.data, search: req.body, every: all, current: req.session.currentBoard, url});
+        url = true;
       });
 }
 
 
 function create(req, res) {
-  Board.findById(req.params.id, function (err, board) {
-    board.contents.push(req.body);
-    board.save(function (err) {
-      res.redirect(`/dashboard/${req.session.currentBoard}`);
+  let isIt = isImageUrl(req.body.link)
+  console.log(isIt)
+  if (isIt) {
+    Board.findById(req.params.id, function (err, board) {
+      board.contents.push(req.body);
+      board.save(function (err) {
+        res.redirect(`/dashboard/${req.session.currentBoard}/edit`);
+      });
     });
-  });
+  } else {
+   url = false
+   res.redirect('/pieces/new');
+  }
 }
 
 let all = []
 
 function lookup(req, res, next) {
-    let page = req.body.page 
-    axios.get(BASE_URL + `search?query=${req.body.pics}&per_page=20&page=${page}`, {
-        headers: {
-          'Authorization': `5${process.env.PEXEL_AUTH}d`
-        }
-      })
-      .then(function(response){
-          console.log(response)
-      all = response.data.photos
-      res.render('pieces/search', { title: 'Express', photos: response.data, search: req.body, every: all});
-    });
+    let page = req.body.page
+    if (req.session) {
+      axios.get(BASE_URL + `search?query=${req.body.pics}&per_page=20&page=${page}`, {
+          headers: {
+            'Authorization': `5${process.env.PEXEL_AUTH}d`
+          }
+        })
+        .then(function(response){
+            console.log(response)
+        all = response.data.photos
+        res.render('pieces/search', { title: 'Express', photos: response.data, search: req.body, every: all});
+      });
+    } else {
+      res.redirect('/dashboard')
+    }
 };
 
 function more(req, res) {
@@ -99,7 +114,7 @@ function removeOne (req, res) {
     Board.findById(req.params.id, function(err, board) {
         board.contents.splice(req.body.idx, 1);
         board.save(function(err) {
-            res.redirect(`/dashboard/${req.params.id}`)
+            res.redirect(`/dashboard/${req.params.id}/edit`)
         })
     })
 }
