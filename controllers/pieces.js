@@ -46,6 +46,9 @@ let all = []
 function lookup(req, res, next) {
     let page = req.body.page
     if (req.session) {
+      if (req.body.pics === "") {
+        res.redirect('/pieces/new')
+      } else {
       axios.get(BASE_URL + `search?query=${req.body.pics}&per_page=20&page=${page}`, {
           headers: {
             'Authorization': `5${process.env.PEXEL_AUTH}d`
@@ -55,7 +58,8 @@ function lookup(req, res, next) {
             console.log(response)
         all = response.data.photos
         res.render('pieces/search', { title: 'Express', photos: response.data, search: req.body, every: all});
-      });
+      })
+      }
     } else {
       res.redirect('/dashboard')
     }
