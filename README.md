@@ -29,7 +29,7 @@
  ![adding a picture](/public/img/add-pic.png)
 
  # Next steps
-- Integrating more APIs and comment features to customize boards furthe. Music, Video, etc.
+- Integrating more APIs and comment features to customize boards further. Music, Video, etc.
 - Smarter editing functionality
 - More responsive mobile migration
 
