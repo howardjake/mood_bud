@@ -3,7 +3,7 @@
 
 
 # 
-# Technolgies Used
+# Technologies Used
 - Node.js
 - Express.js
 - HTML
@@ -13,7 +13,7 @@
 
 # Getting Started
 
-![login screeen](/public/img/login-page.png)
+![login screen](/public/img/login-page.png)
 
 
 

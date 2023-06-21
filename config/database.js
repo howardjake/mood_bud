@@ -9,7 +9,7 @@ const PASS = process.env.DB_PASS
 // shortcut to mongoose.connection object
 const db = mongoose.connection;
 
-mongoose.connect(`mongodb+srv://${USER}:${PASS}@cluster0.txpol.mongodb.net/mood_bud?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://${USER}:${PASS}@cluster0.tpziwoz.mongodb.net/?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
